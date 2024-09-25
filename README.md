@@ -1,1 +1,3 @@
-# github-auth
+# social-authentication
+
+social-authentication
