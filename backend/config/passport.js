@@ -9,24 +9,10 @@ export default function (passport) {
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
         callbackURL: process.env.GITHUB_CALLBACK_URL,
       },
-      async (accessToken, refreshToken, profile, done) => {x
-        const { id, username, displayName, profileUrl } = profile;
-        try {
-          let user = await findOne({ githubId: profile.id });
-          if (!user) {
-            user = new User({
-              githubId: id,
-              username,
-              displayName,
-              profileUrl,
-            });
-            await user.save();
-          }
-          return done(null, user);
-        } catch (err) {
-          console.log(err);
-          return done(err);
-        }
+      function (accessToken, refreshToken, profile, done) {
+        User.findOrCreate({ githubId: profile.id }, function (err, user) {
+          return done(err, user);
+        });
       }
     )
   );

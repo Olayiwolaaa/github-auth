@@ -6,6 +6,10 @@ export const callback =
     res.redirect("/dashboard");
   };
 
+export const login = (req, res) => {
+  res.redirect("/");
+};
+
 export const logout = (req, res) => {
   req.logout((err) => {
     if (err) return next(err);

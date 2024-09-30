@@ -16,6 +16,13 @@ router.get(
   }),callback
 );
 
+// Login route
+app.get(
+  "/auth/github/callback",
+  passport.authenticate("github", { failureRedirect: "/login" }),
+  login
+);
+
 // Logout route
 router.get("/logout", 
   logout
