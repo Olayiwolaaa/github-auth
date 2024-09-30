@@ -1,31 +1,36 @@
 import express from "express";
 import passport from "passport";
-import { callback, logout } from "../controllers/github.controller.js";
+import { callback, login, logout, success } from "../controllers/github.controller.js";
 
 
 
 const router = express.Router();
 // Route for GitHub authentication
-router.get("/auth", passport.authenticate("github", { scope: ["user:email"] }));
+router.get("/github", passport.authenticate("github", { scope: ["user:email"] }));
 
 // GitHub callback URL
 router.get(
-  "/callback",
+  "/github/callback",
   passport.authenticate("github", {
     failureRedirect: "/",
-  }),callback
+  }),
+  callback
 );
 
 // Login route
-app.get(
-  "/auth/github/callback",
+router.get(
+  "/github/login",
   passport.authenticate("github", { failureRedirect: "/login" }),
   login
 );
 
-// Logout route
-router.get("/logout", 
-  logout
+// success route
+router.get(
+  "/github/success",
+  success
 );
+
+// Logout route
+router.get("/github/logout", logout);
 
 export default router;
