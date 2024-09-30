@@ -1,5 +1,5 @@
 import { Strategy as GitHubStrategy } from "passport-github2";
-import User, { findOne, findById } from "../models/User";
+import User, { findOne, findById } from "../models/user.models.js";
 
 export default function (passport) {
   passport.use(
@@ -7,12 +7,12 @@ export default function (passport) {
       {
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: "/auth/github/callback",
+        callbackURL: process.env.GITHUB_CALLBACK_URL,
       },
-      async (accessToken, refreshToken, profile, done) => {
+      async (accessToken, refreshToken, profile, done) => {x
         const { id, username, displayName, profileUrl } = profile;
         try {
-          let user = await findOne({ githubId: id });
+          let user = await findOne({ githubId: profile.id });
           if (!user) {
             user = new User({
               githubId: id,

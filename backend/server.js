@@ -15,10 +15,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // app.use(express.json());
-app.use("/auth/github", webRoutes); 
+app.use("/github", webRoutes); 
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     connectDB();
     console.log(`Server running on port http://localhost:${port}`);
-});
+})
