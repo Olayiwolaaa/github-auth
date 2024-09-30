@@ -10,7 +10,7 @@ const SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"];
 // created automatically when the authorization flow completes for the first
 // time.
 const TOKEN_PATH = join(cwd(), "token.json");
-const CREDENTIALS_PATH = join(cwd(), "credentials.json");
+const CREDENTIALS_PATH = join(cwd(), "backend/credentials.json");
 
 /**
  * Reads previously authorized credentials from the save file.
