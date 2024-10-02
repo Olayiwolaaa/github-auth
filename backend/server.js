@@ -15,7 +15,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // app.use(express.json());
-app.use("/auth", webRoutes); 
+app.use("/auth", webRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

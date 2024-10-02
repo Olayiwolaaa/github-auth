@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import User from "../models/user.models";
+import User from "../models/user.models.js";
 
 
 const APP_ID = process.env.FACEBOOK_CLIENT_ID;
